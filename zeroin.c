@@ -45,13 +45,12 @@
  ************************************************************************
  */
 
-#include "math.h"
+#include <float.h>
+#include <math.h>
+#include "brent.h"
 
-double zeroin(ax,bx,f,tol)		/* An estimate to the root	*/
-double ax;				/* Left border | of the range	*/
-double bx;  				/* Right border| the root is seeked*/
-double (*f)(double x);			/* Function under investigation	*/
-double tol;				/* Acceptable tolerance		*/
+double
+zeroin(double ax, double bx, double(*f)(double), double tol)
 {
   double a,b,c;				/* Abscissae, descr. see above	*/
   double fa;				/* f(a)				*/
@@ -77,7 +76,7 @@ double tol;				/* Acceptable tolerance		*/
 	a = b;  b = c;  c = a;          /* best approximation		*/
 	fa=fb;  fb=fc;  fc=fa;
     }
-    tol_act = 2*EPSILON*fabs(b) + tol/2;
+    tol_act = 2* DBL_EPSILON *fabs(b) + tol/2;
     new_step = (c-b)/2;
 
     if( fabs(new_step) <= tol_act || fb == (double)0 )

@@ -18,8 +18,5 @@
     <ClCompile Include="..\vzeroin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\zeroin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

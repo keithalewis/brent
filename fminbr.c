@@ -49,14 +49,14 @@
  ************************************************************************
  */
 
-#include "assert.h"
-#include "math.h"
+/*#include "assert.h"*/
+#include <float.h>
+#include <math.h>
+#include "brent.h"
 
-double fminbr(a,b,f,tol)		/* An estimate to the min location*/
-double a;				/* Left border | of the range	*/
-double b;  				/* Right border| the min is seeked*/
-double (*f)(double x);			/* Function under investigation	*/
-double tol;				/* Acceptable tolerance		*/
+#define SQRT_EPSILON 1.49011611938476E-08
+
+double fminbr(double a, double b, double (*f)(double), double tol)
 {
   double x,v,w;				/* Abscissae, descr. see above	*/
   double fx;				/* f(x)				*/
@@ -64,7 +64,7 @@ double tol;				/* Acceptable tolerance		*/
   double fw;				/* f(w)				*/
   const double r = (3.-sqrt(5.0))/2;	/* Gold section ratio		*/
 
-  assert( tol > 0 && b > a );
+  /*assert( tol > 0 && b > a );*/
 
   v = a + r*(b-a);  fv = (*f)(v);       /* First step - always gold section*/
   x = v;  w = v;

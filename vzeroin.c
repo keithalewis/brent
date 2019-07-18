@@ -3,7 +3,9 @@
  *			Verify ZEROIN routine
  */
 
-#include "math.h"
+#include <float.h>
+#include <math.h>
+#include <stdio.h>
 
 double zeroin(double ax, double bx, double (*f)(), double tol);
 
@@ -44,7 +46,7 @@ double x;
 }
 
 
-main()
+int main(void)
 {
   test(2.0,3.0,f1,"x^3 - 2*x - 5");
   printf("Exact root is \t\t2.0945514815\n");

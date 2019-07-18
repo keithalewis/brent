@@ -18,8 +18,5 @@
     <ClCompile Include="..\vfminbr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\fminbr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

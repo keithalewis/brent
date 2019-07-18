@@ -3,9 +3,11 @@
  *			Verify FMINBR routine
  */
 
-#include "math.h"
+#include <float.h>
+#include <math.h>
+#include <stdio.h>
 
-double fminbr(double a, double b, double (*f)(), double tol);
+double fminbr(double a, double b, double (*f)(double), double tol);
 
 static int counter;			/* Iteration counter	*/
 
@@ -17,41 +19,37 @@ char * msg;				/* Explanation message		*/
   double minloc;
   counter = 0;
   printf("\nFor function %s\nin [%g,%g] min found is at\t%.9e\n",msg,a,b,
-	 (minloc=fminbr(a,b,f,EPSILON)) );
+	 (minloc=fminbr(a,b,f,DBL_EPSILON)) );
   printf("Min function value found\t%.4e\nNo. of iterations\t\t%d\n",
 	 (*f)(minloc), counter);
 }
 
-double f1(x)				/* Test of the Forsythe book	*/
-double x;
+double f1(double x)				/* Test of the Forsythe book	*/
 {
   counter++;
-  return (powi(x,2)-2.0)*x - 5.0;
+  return (pow(x,2)-2.0)*x - 5.0;
 }
 
-double f2(x)				/* Modified test 1            	*/
-double x;
+double f2(double x)				/* Modified test 1            	*/
 {
   counter++;
-  return powi( (powi(x,2)-2.0)*x - 5.0, 2 );
+  return pow( (pow(x,2)-2.0)*x - 5.0, 2 );
 }
 
-double f3(x)				/* My test                  	*/
-double x;
+double f3(double x)				/* My test                  	*/
 {
   counter++;
-  return powi( cos(x) - x,2 ) - 2;
+  return pow( cos(x) - x,2 ) - 2;
 }
 
-double f4(x)				/* My test                  	*/
-double x;
+double f4(double x)				/* My test                  	*/
 {
   counter++;
-  return powi( sin(x) - x,2 ) + 1;
+  return pow( sin(x) - x,2 ) + 1;
 }
 
 
-main()
+int main(void)
 {
   test(0.0,1.0,f1,"x^3 - 2*x - 5");
   printf("Exact min is at\t\t0.81650\n");
